@@ -10,7 +10,7 @@ export default function VerifyTelegramPage() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const token = getAuthToken();
-    // const [siteName, setSiteName] = useState("Smart P2P Circle");
+    // const [siteName, setSiteName] = useState("SOLANAP2P");
     const [siteBot, setSiteBot] = useState("");
 
     useEffect(() => {

@@ -1,8 +1,8 @@
-import type React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { toast } from "react-toastify";
+import pic1 from "@/assets/solanasvg.webp"
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -16,7 +16,6 @@ const getDeviceName = () => {
     if (ua.includes("Edg")) return "Edge";
     return "Unknown";
   })();
-
   return `${platform} ${browser}`;
 };
 
@@ -51,7 +50,6 @@ export default function RegisterPage() {
     agreeTerms: false,
   });
 
-  // Pre-fill referral from URL
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const referral = searchParams.get("ref");
@@ -60,7 +58,6 @@ export default function RegisterPage() {
     }
   }, []);
 
-  // Get system config
   useEffect(() => {
     const fetchSystemConfig = async () => {
       try {
@@ -78,7 +75,7 @@ export default function RegisterPage() {
     fetchSystemConfig();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -86,16 +83,14 @@ export default function RegisterPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match");
       return;
     }
 
     setLoading(true);
-
     const payload = {
       firstname: formData.firstName,
       lastname: formData.lastName,
@@ -133,145 +128,133 @@ export default function RegisterPage() {
   };
 
   return (
-      <div className="min-h-screen bg-white flex flex-col">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/" className="inline-flex items-center text-gray-700 hover:text-primary transition">
-            <ArrowLeft className="h-4 w-4 mr-2"/>
-            Back to Home
-          </Link>
+      <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-white">
+        {/* Left: Visual or Banner */}
+        <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-[#00b1ed]">
+          <div className="text-center max-w-md">
+            <h1 className="text-4xl font-bold mb-4 text-white">Join the Future of P2P</h1>
+            <p className="text-lg text-white">Decentralized. Transparent. Rewarding.</p>
+            <img
+                src={pic1}
+                alt="Crypto Illustration"
+                className="mt-10 max-w-full"
+            />
+          </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-center px-4 py-12">
-          <div className="w-full max-w-4xl">
+        {/* Right: Form */}
+        <div className="flex flex-col justify-center px-6 py-12 sm:px-12">
+        <Link to="/" className="inline-flex items-center text-gray-700 hover:text-primary mb-4">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Home
+          </Link>
+
+          <div className="max-w-3xl mx-auto w-full">
             <div className="text-center mb-8">
-              <Link to="/" className="inline-block">
-                <h4 className="text-center font-gothic text-gray-900">
-                  SMART <span className="text-primary font-gothic">P2P</span> CIRCLE
-                </h4>
-              </Link>
-              <h1 className="text-2xl font-bold mt-6 mb-2 text-gray-900">Create Your Account</h1>
-              <p className="text-gray-600">
-                Join SMARTP2PCIRCLE Trading and start trading cryptocurrencies
-              </p>
+              <h2 className="text-3xl font-bold text-gray-900">Create Your Account</h2>
+              <p className="text-gray-600">Start your journey with SMARTP2P today</p>
             </div>
 
-            <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-md">
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {formFields.map(({id, label, type, placeholder}) => (
-                    <div key={id} className="space-y-2">
-                      <label htmlFor={id} className="block text-sm font-medium text-gray-800">{label}</label>
-                      <input
-                          id={id}
-                          name={id}
-                          type={type}
-                          value={formData[id as keyof typeof formData] as string}
-                          onChange={handleChange}
-                          placeholder={placeholder}
-                          className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-primary text-gray-900"
-                          required={id !== "referralCode"}
-                      />
-                    </div>
-                ))}
-
-                {/* Password Field */}
-                <div className="space-y-2 md:col-span-3">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-800">Password</label>
-                  <div className="relative">
-                    <input
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 pr-10"
-                        placeholder="Create a password"
-                        required
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(prev => !prev)}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-800"
-                    >
-                      {showPassword ? <EyeOff className="h-5 w-5"/> : <Eye className="h-5 w-5"/>}
-                    </button>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Must be at least 8 characters with uppercase, lowercase, and number.
-                  </p>
-                </div>
-
-                {/* Confirm Password */}
-                <div className="space-y-2 md:col-span-3">
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-800">Confirm
-                    Password</label>
-                  <div className="relative">
-                    <input
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        type={showConfirmPassword ? "text" : "password"}
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 pr-10"
-                        placeholder="Confirm your password"
-                        required
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowConfirmPassword(prev => !prev)}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-800"
-                    >
-                      {showConfirmPassword ? <EyeOff className="h-5 w-5"/> : <Eye className="h-5 w-5"/>}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Terms Agreement */}
-                <div className="md:col-span-3">
-                  <div className="flex items-start">
-                    <input
-                        id="agreeTerms"
-                        name="agreeTerms"
-                        type="checkbox"
-                        checked={formData.agreeTerms}
-                        onChange={handleChange}
-                        className="h-4 w-4 rounded border-gray-300 bg-white text-primary focus:ring-primary"
-                        required
-                    />
-                    <label htmlFor="agreeTerms" className="ml-3 text-sm text-gray-700">
-                      I agree to the <Link to="/terms" className="text-primary hover:underline">Terms of
-                      Service</Link> and <Link to="/privacy" className="text-primary hover:underline">Privacy
-                      Policy</Link>
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {formFields.map(({ id, label, type, placeholder }) => (
+                  <div key={id}>
+                    <label htmlFor={id} className="block text-sm font-medium text-gray-800 mb-1">
+                      {label}
                     </label>
+                    <input
+                        id={id}
+                        name={id}
+                        type={type}
+                        value={formData[id]}
+                        onChange={handleChange}
+                        placeholder={placeholder}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        required={id !== "referralCode"}
+                    />
                   </div>
-                </div>
+              ))}
 
-                {/* Submit Button */}
-                <div className="md:col-span-3">
-                  <button
-                      type="submit"
-                      disabled={loading || !loginEnabled}
-                      className={`w-full px-4 py-3 rounded-lg font-medium transition ${
-                          loading || !loginEnabled
-                              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                              : "bg-primary hover:bg-yellow-500 text-white"
-                      }`}
-                  >
-                    {loading ? "Creating..." : "Create Account"}
+              {/* Password */}
+              <div className="md:col-span-2">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-800 mb-1">Password</label>
+                <div className="relative">
+                  <input
+                      id="password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg pr-10"
+                      required
+                      placeholder="Enter password"
+                  />
+                  <button type="button" onClick={() => setShowPassword(p => !p)} className="absolute right-3 top-3">
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
-              </form>
-            </div>
+              </div>
 
-            {/* Footer */}
-            <div className="text-center mt-8">
-              <p className="text-gray-600">
-                Already have an account?{" "}
-                <Link to="/login" className="text-primary hover:underline">Sign in</Link>
-              </p>
-            </div>
+              {/* Confirm Password */}
+              <div className="md:col-span-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-800 mb-1">Confirm Password</label>
+                <div className="relative">
+                  <input
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg pr-10"
+                      required
+                      placeholder="Confirm password"
+                  />
+                  <button type="button" onClick={() => setShowConfirmPassword(p => !p)} className="absolute right-3 top-3">
+                    {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Agree to Terms */}
+              <div className="md:col-span-2 flex items-start space-x-2">
+                <input
+                    id="agreeTerms"
+                    name="agreeTerms"
+                    type="checkbox"
+                    checked={formData.agreeTerms}
+                    onChange={handleChange}
+                    className="h-4 w-4 mt-1"
+                    required
+                />
+                <label htmlFor="agreeTerms" className="text-sm text-gray-700">
+                  I agree to the{" "}
+                  <Link to="/terms" className="text-primary underline">Terms of Service</Link>{" "}
+                  and{" "}
+                  <Link to="/privacy" className="text-primary underline">Privacy Policy</Link>
+                </label>
+              </div>
+
+              {/* Submit */}
+              <div className="md:col-span-2">
+                <button
+                    type="submit"
+                    disabled={loading || !loginEnabled}
+                    className={`w-full py-3 rounded-lg text-white font-semibold ${
+                        loading || !loginEnabled
+                            ? "bg-blue-400 cursor-not-allowed"
+                            : "bg-secondary hover:bg-blue-500"
+                    }`}
+                >
+                  {loading ? "Creating Account..." : "Create Account"}
+                </button>
+              </div>
+            </form>
+
+            <p className="text-center text-gray-600 mt-6">
+              Already registered?{" "}
+              <Link to="/login" className="text-primary font-medium hover:underline">Sign In</Link>
+            </p>
           </div>
         </div>
       </div>
-
   );
 }

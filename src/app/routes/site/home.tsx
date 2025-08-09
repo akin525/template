@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import pic from "@/assets/SMART P2P CIRCLE FLYER@3x-2.png"
-import pic1 from "@/assets/SMART P2P CIRCLE FLYER 2 @3x.png"
+import pic from "@/assets/solana.jpg"
+import pic1 from "@/assets/solanaWhite.jpg"
 import {
   Accordion,
   AccordionContent,
@@ -32,34 +32,40 @@ import axios from "axios";
 
 export function Header() {
   return (
-    <>
-      <header className="flex items-center px-5 h-20 fixed top-0 z-50 backdrop-blur-sm w-full">
-        <div className="flex items-center justify-between w-full md:container h-full mx-auto">
-          <div className="flex items-center">
-            <p className="font-bold text-3xl">SMART P2P CIRCLE</p>
+      <>
+        <header className="fixed top-0 z-50 w-full backdrop-blur-md bg-white/70 shadow-sm border-b border-gray-200">
+          <div className="h-20 flex items-center justify-between px-5 md:container mx-auto">
+            {/* Logo / Brand */}
+            <div className="flex items-center space-x-2">
+              <p className="text-2xl font-extrabold text-gray-900 tracking-tight">
+                SOLANAP2P
+              </p>
+            </div>
+
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-4">
+              <Link to="/login">
+                <Button variant="outline" className="px-5">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/register">
+                <Button className="px-5">Register</Button>
+              </Link>
+            </nav>
+
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <MobileMenu />
+            </div>
           </div>
+        </header>
 
-          <nav className="hidden md:flex items-center gap-6">
-            <Link to="/login" className=" transition">
-              <Button variant="outline">Sign In</Button>
-            </Link>
-
-            <Link
-              to="/register"
-              className="text-white hover:text-primary transition"
-            >
-              <Button>Register</Button>
-            </Link>
-          </nav>
-
-          <MobileMenu />
-        </div>
-      </header>
-      <div className="mb-20"></div>
-    </>
+        {/* Spacer for fixed header */}
+        <div className="h-20" />
+      </>
   );
 }
-
 export default function Home() {
   useEffect(() => {
     AOS.init({ once: true });
@@ -120,75 +126,75 @@ export default function Home() {
 const HeroSection = () => {
   return (
       <>
-        <main className="relative pt-24 px-6 md:px-10 lg:h-[calc(100vh-100px)] overflow-hidden">
+        <main className="relative pt-28 px-6 md:px-10 min-h-[calc(100vh-80px)] bg-white text-gray-900 overflow-hidden">
+          {/* Background */}
           <DotBackgroundDemo />
+          <div className="absolute -z-10 top-0 left-0 w-72 h-72 rounded-full bg-primary opacity-20 blur-[120px] animate-pulse"></div>
+          <div className="absolute -z-10 bottom-10 right-10 w-72 h-72 rounded-full bg-[#00b1ed] opacity-20 blur-[160px] animate-pulse"></div>
 
-          {/* Floating blobs */}
-          <div className="absolute -z-10 top-0 left-0 size-40 sm:size-60 xl:size-80 rounded-full blur-[100px] sm:blur-[160px] xl:blur-[240px] bg-primary floating-blob"></div>
-          <div className="absolute -z-10 bottom-10 right-10 size-36 md:size-56 xl:size-72 rounded-full blur-3xl md:blur-[120px] xl:blur-[280px] bg-[#00b1ed] floating-blob-2"></div>
-
-          {/* Hero content */}
-          <div className="container mx-auto h-full flex flex-col justify-center items-center gap-6 text-center py-16">
-            <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary uppercase tracking-wider">
-              🎉🎉
+          {/* Hero Content */}
+          <div className="container mx-auto flex flex-col items-center justify-center text-center py-16 gap-8">
+            <p className="text-base sm:text-lg md:text-xl font-semibold text-primary uppercase tracking-widest">
+              🚀 Join The Future of P2P Finance
             </p>
 
-            <h1 className="font-gothic text-4xl sm:text-6xl md:text-7xl leading-tight font-extrabold">
-              A <span className="text-primary">SMART</span> & <span className="text-[#00b1ed]">P2P</span> CIRCLE
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight">
+              Welcome to <span className="text-primary">SMART</span> <br />
+              <span className="text-[#00b1ed]">SC (Solana P2P Connect)</span>
             </h1>
 
-            <p className="max-w-3xl text-lg md:text-xl text-muted-foreground">
-              THE FIRST EVER  DECENTRALIZED, BLOCKCHAIN TECHNOLOGY & AI-POWERED USDT-BEP20 P2P PLATFORM
+            <p className="max-w-3xl text-lg md:text-xl text-gray-600">
+              The world's first community-driven Bid, Rebid & Ask system powered by Web3 and secured by USDT SPL on the Solana Network.
             </p>
 
-            {/* Highlighted features */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full max-w-6xl">
-              {[
-                "Where Members Bid, Rebid, and Ask to Get 200% Returns in 10 Days.",
-                "100% transparency!",
-                "SPC's sustainability lies in our controlled bidding protocol ($5000 bid max) and REBIDDING policy!",
-                "Min $10, Max 500,000 USDT Daily",
-                "10% Referral Bonus Instantly",
-                "End Economic Hardship – Join Now"
-              ].map((text, index) => (
-                  <div
-                      key={index}
-                      className="border border-muted bg-background/50 rounded-2xl p-6 text-lg font-medium backdrop-blur-md shadow-md hover:shadow-xl transition-all"
-                  >
-                    {text}
-                  </div>
-              ))}
-            </div>
-
             {/* Call to Actions */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 mt-12 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
               <Link to="/login">
                 <Button
                     variant="outline"
                     size="lg"
-                    className="h-14 rounded-full sm:px-10 text-lg shadow-lg"
+                    className="h-14 px-8 text-lg rounded-full shadow-md"
                 >
                   Sign In
                 </Button>
               </Link>
-
               <Link to="/register">
                 <Button
                     size="lg"
-                    className="h-14 rounded-full sm:px-10 text-lg bg-gradient-to-r from-primary to-[#00b1ed] text-white shadow-xl"
+                    className="h-14 px-8 text-lg rounded-full bg-gradient-to-r from-primary to-[#00b1ed] text-white shadow-xl"
                 >
                   Register Now
                 </Button>
               </Link>
             </div>
+
+            {/* Features */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 w-full max-w-6xl">
+              {[
+                "5-hour confirmation timer keeps things fast and fair",
+                "Defaulters who submit fake receipts are blocked instantly",
+                "No drama. Just clean P2P value exchange",
+                "You can bid from $20 to $3000",
+                "Rebid the same amount in 30 days to receive 2x",
+                "Earn referral commissions across 3 levels",
+                "Bid, Rebid & Ask windows are open 24/7"
+              ].map((feature, idx) => (
+                  <div
+                      key={idx}
+                      className="border border-gray-200 bg-white rounded-2xl p-5 text-base font-medium shadow hover:shadow-lg transition duration-300"
+                  >
+                    {feature}
+                  </div>
+              ))}
+            </div>
           </div>
         </main>
 
-        {/* Marquee banner */}
-        <div className="bg-primary border-t-4 border-b-4 border-dark h-12 flex items-center font-rubik text-white text-lg">
-          <Marquee speed={40}>
-            {Array.from({ length: 10 }).map((_, index) => (
-                <span key={index} className="mx-6 font-semibold">
+        {/* Marquee Banner */}
+        <div className="bg-gradient-to-r from-primary to-[#00b1ed] h-12 flex items-center text-white font-semibold text-sm sm:text-base border-t border-b border-dark">
+          <Marquee speed={40} gradient={false}>
+            {Array.from({ length: 8 }).map((_, i) => (
+                <span key={i} className="mx-6">
               🔥 No Recommitment • 100% Transparency • 200% Return in 10 Days 🔥
             </span>
             ))}
@@ -210,16 +216,18 @@ const WhatIsSection = () => {
                 <span className="text-white text-xs sm:text-base font-bold">!</span>
               </div>
               <span className="text-primary text-sm sm:text-base uppercase font-medium">
-            ABOUT SMART P2P CIRCLE:,
+            ABOUT SOLANA P2P CONNECT:,
           </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-              It's a global usdt peer-to-peer platform that operates transparently on the blockchain & is entirely owned and controlled by its members
-            </h1>
+            <h6 className="text-3xl sm:text-3xl  font-bold mb-6 leading-tight">
+              HE FIRST EVER DECENTRALIZED, WEB3 & AI-POWERED SOLANA USDT-SPL P2P PLATFORM
+              Solana is a blockchain platform designed to host decentralized and scalable applications. Founded in 2017 with the pioneering work of Anatoly Yakovenko and his team at Solana Labs. Yakovenko, a former Qualcomm engineer, aimed to create a blockchain that could overcome the limitations of existing platforms like Ethereum, particularly in terms of scalability and transaction speed. Today Solana is known as the Ethereum Killer.
+            </h6>
 
             <p className="text-muted-foreground text-sm lg:text-base mb-8 max-w-lg mx-auto lg:mx-0">
-              No central authority, no central account, highly secure, and resistant to scams or hacking
+              SolanaP2PConnect is designed for global adoption of Solana and its 100% decentralized P2P system with no central authority, no central system account, making it highly secured and resistant to scams or hacking
+              Where Members Bid, Rebid, and Ask to Get 100% Returns in 30 Days.
             </p>
 
             <Link to="/dashboard">
@@ -275,13 +283,16 @@ const P2PSection = () => {
           <div className="lg:w-1/2 lg:pl-12">
             <div className="mb-4">
               <span className="text-primary text-sm sm:text-base uppercase font-medium">
-                P2P DECENTRALISED
+                SolanaP2PConnect
               </span>
               <div className="w-24 h-0.5 sm:h-1 bg-primary mt-2"></div>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 leading-tight">
-              This is more than a platform — it’s a movement. A global Web3-powered revolution where transparency, ownership, and wealth are back in your hands.
+            <h2 className="text-3xl sm:text-3xl font-bold mb-6 leading-tight">
+              Welcome to SC (Solana P2P Connect), the world's first community-driven Bid, Rebid & Ask system powered by Web3 and the reliability of USDT SPL on Solana Network
+            </h2>
+            <h2 className="text-3xl sm:text-3xl font-bold mb-6 leading-tight">
+              In a world filled with broken promises and endless cycles, SC offers you a transparent, decentralized, and profitable alternative. No hidden rules. Just clean, smart earning
             </h2>
 
             {/*<p className="text-gray-400 text-sm sm:text-base mb-8">*/}
@@ -379,7 +390,7 @@ function ServicesSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto">
-            SMART P2P CIRCLE Trading offers a comprehensive suite of services to meet
+            SOLANAP2P Trading offers a comprehensive suite of services to meet
             all your cryptocurrency trading needs.
           </p>
         </div>
@@ -438,7 +449,7 @@ function FeaturesSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-            Why Choose SMART P2P CIRCLE Trading Platform
+            Why Choose SOLANAP2P Trading Platform
           </h2>
 
           <p className="text-gray-400 text-sm sm:text-base  mb-8">
@@ -655,7 +666,7 @@ function SPCUpdateHighlights() {
 const footerData = {
   companyInfo: {
     description:
-      "SMART P2P CIRCLE Trading is a peer-to-peer digital asset trading and exchange platform that connects buyers and sellers worldwide.",
+      "SOLANAP2P Trading is a peer-to-peer digital asset trading and exchange platform that connects buyers and sellers worldwide.",
   },
   quickLinks: [
     { label: "Home", href: "#" },
@@ -679,7 +690,7 @@ const footerData = {
     buttonText: "Subscribe",
   },
   footerBottom: {
-    copyright: `© ${new Date().getFullYear()} SMART P2P CIRCLE Trading. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} SOLANAP2P Trading. All rights reserved.`,
     additionalLinks: ["Support", "Security", "Careers"],
   },
 };
@@ -692,7 +703,7 @@ function Footer() {
           {/* Company Info */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center">
-              <p className="font-bold text-3xl">SMART P2P CIRCLE</p>
+              <p className="font-bold text-3xl">SOLANAP2P</p>
             </div>
             <p className="text-gray-400 mb-4 max-w-sm">
               {footerData.companyInfo.description}
@@ -754,60 +765,67 @@ const HowItWorksSection = () => {
           "Register using the referral link of your sponsor or visit smartp2pcircle.com",
       icon: "📝",
     },
-
     {
-      title: "You bid from $10 (mini)- $300 (max)",
+      title: "You Bid From $20 (min) - $3000 (max)",
       description:
-          "Once you register, you can bid – starting from just $10 to $300 USDT using Binance Smart Chain Network  (BEP20)",
+          "Once you register, you can bid – starting from just $10 to $3000 USDT using Binance Smart Chain Network (BEP20)",
       icon: "🔄",
+    },
+    {
+      title: "Telegram Bot",
+      description:
+          "Smart AI Telegram bot keeps you in control 24/7",
+      icon: "🤖",
     },
     {
       title: "Paired To Receive",
       description:
-          " In 10 days, you rebid same amount you started with, then ask to get paired to receive double your bid",
+          "In 30 days, you REBID the same amount, then ASK to receive double your bid (100%)",
       icon: "💰",
     },
     {
-      title: "Bidding Rebidding",
+      title: "Bidding & Rebidding",
       description:
-          "Bidding, Rebidding & asking opens twice daily:\n" +
-          "* 10 am - 10:30 am CET\n" +
-          "* 10 pm  - 10:30 pm CET\n",
-      icon: "💰",
+          "Bidding, Rebidding & Asking opens twice daily:\n* 10 am - 10:30 am CET\n* 10 pm - 10:30 pm CET",
+      icon: "🕒",
     },
     {
       title: "Commission",
       description:
-          "Get an infinite 10% recurring direct referral commission each time your partners rebid",
+          "Earn referral commissions from Level 1 to Level 3 every time your referrals rebid",
       icon: "📈",
     },
     {
-      title: "Minimum Withdrawal Commission",
+      title: "Minimum Withdrawal",
       description:
-          "The minimum withdrawal commission is $20",
-      icon: "📈",
+          "$10 minimum withdrawal threshold",
+      icon: "💸",
     },
   ];
 
   return (
-      <section className="py-20 bg-[#0f0f0f] text-white" id="how-it-works">
+      <section className="py-20 bg-white text-gray-800" id="how-it-works">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">How It Works</h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Getting started with Smart P2P Circle is quick, secure, and designed for your success.
+            <h2 className="text-4xl font-bold mb-4 text-gray-900">How It Works</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Getting started with SOLANAP2P is quick, secure, and designed for your success.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {steps.map((step, index) => (
                 <div
                     key={index}
-                    className="bg-[#1a1a1a] p-6 rounded-2xl border border-gray-700 hover:border-primary transition duration-300 shadow-lg hover:shadow-xl"
+                    className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-xl transition duration-300"
                 >
-                  <div className="text-4xl mb-4">{step.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2 text-white">{`${index + 1}. ${step.title}`}</h3>
-                  <p className="text-gray-400 text-sm">{step.description}</p>
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 text-2xl mb-4">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                    {index + 1}. {step.title}
+                  </h3>
+                  <p className="text-gray-600 whitespace-pre-line text-sm">{step.description}</p>
                 </div>
             ))}
           </div>
