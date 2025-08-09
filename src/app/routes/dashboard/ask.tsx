@@ -75,9 +75,10 @@ export default function AskPage() {
                         }`}
                         onClick={() => setBalSource(source as "balance" | "earning")}
                     >
-                      {source === "balance" ? "Main Balance" : "Earnings"} ({user?.[source]} USDT)
+                      {source === "balance" ? "Main Balance" : "Earnings"} ({String(user?.[source] ?? "0")} USDT)
                     </button>
                 ))}
+
               </div>
 
               {/* Amount Selector Grid */}

@@ -1,10 +1,24 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { toast } from "react-toastify";
 import pic1 from "@/assets/solanasvg.webp"
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
+type RegisterFormFields = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  bep_address: string;
+  country: string;
+  email: string;
+  phone: string;
+  referralCode: string;
+  password: string;
+  confirmPassword: string;
+  agreeTerms: boolean;
+};
+
 
 const getDeviceName = () => {
   const ua = navigator.userAgent;
@@ -35,8 +49,7 @@ export default function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loginEnabled, setLoginEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RegisterFormFields>({
     firstName: "",
     lastName: "",
     username: "",
@@ -49,6 +62,7 @@ export default function RegisterPage() {
     confirmPassword: "",
     agreeTerms: false,
   });
+
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -75,15 +89,19 @@ export default function RegisterPage() {
     fetchSystemConfig();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value, type } = target;
+    const checked = target.checked;
+
     setFormData(prev => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match");
@@ -157,22 +175,36 @@ export default function RegisterPage() {
 
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {formFields.map(({ id, label, type, placeholder }) => (
-                  <div key={id}>
+                  <div key={id} className="mb-4">
                     <label htmlFor={id} className="block text-sm font-medium text-gray-800 mb-1">
                       {label}
                     </label>
-                    <input
-                        id={id}
-                        name={id}
-                        type={type}
-                        value={formData[id]}
-                        onChange={handleChange}
-                        placeholder={placeholder}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                        required={id !== "referralCode"}
-                    />
+
+                    {type === "checkbox" ? (
+                        <input
+                            id={id}
+                            name={id}
+                            type="checkbox"
+                            checked={formData[id as keyof typeof formData] as boolean}  // ✅ Checkbox needs `checked`
+                            onChange={handleChange}
+                            className="mr-2"
+                            required
+                        />
+                    ) : (
+                        <input
+                            id={id}
+                            name={id}
+                            type={type}
+                            value={formData[id as keyof typeof formData] as string}  // ✅ Non-checkbox input
+                            onChange={handleChange}
+                            placeholder={placeholder}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            required={id !== "referralCode"}
+                        />
+                    )}
                   </div>
               ))}
+
 
               {/* Password */}
               <div className="md:col-span-2">

@@ -4,8 +4,6 @@ import DashboardHeader from "../../../components/DashboardHeader";
 import Sidebar from "../../../components/Sidebar";
 import { getAuthToken } from "@/utils/auth";
 import { toast } from "react-toastify";
-import { useUser } from "@/context/UserContext.tsx";
-
 interface Plan {
   id: number;
   name: string;
@@ -23,7 +21,7 @@ export default function CreateBid() {
   const [plan, setPlan] = useState<Plan | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const { user } = useUser();
+  // const { user } = useUser();
   const token = getAuthToken();
 
   useEffect(() => {

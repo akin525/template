@@ -44,11 +44,8 @@ interface User {
   updated_at?: string;
   recentBids?: Transaction[];
   recentAsks?: Transaction[];
-  transactions: Array<{
-    description: string;
-    status: "Pending" | "Completed" | "Failed";
-  }>;
-  // You can add more if your backend sends more
+
+  [key: string]: string | boolean | number | string[] | Transaction[] | null | undefined;
 }
 
 interface UserContextType {

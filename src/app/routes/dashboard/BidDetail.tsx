@@ -206,7 +206,7 @@ function Detail({label, value }: { label: string; value: string | number }) {
 }
 
 // Status Badge UI
-function StatusBadge({ status, isPayment }: { status: string; isPayment?: boolean }) {
+function StatusBadge({ status }: { status: string; isPayment?: boolean }) {
     const label = formatLabel(status);
     const base = "px-3 py-1 text-xs font-bold rounded-full";
 
