@@ -48,7 +48,7 @@ export default function Sidebar({
                     {/* Header */}
                     <div className="flex items-center justify-between px-6 py-6 border-b border-gray-200">
                         <Link to="/" className="text-2xl font-extrabold text-indigo-700 tracking-wide">
-                            P2P ENERGY
+                            Solana P2P Connect
                         </Link>
                         <button
                             onClick={() => setSidebarOpen(false)}
@@ -65,7 +65,7 @@ export default function Sidebar({
                             <SidebarLink to="/dashboard" icon={<LayoutDashboard size={18} />}>Dashboard</SidebarLink>
                             <SidebarLink to="/wallet" icon={<Wallet size={18} />}>Wallet</SidebarLink>
                             <SidebarLink to="/history" icon={<CreditCard size={18} />}>History</SidebarLink>
-                            <SidebarLink to="/investments" icon={<CreditCard size={18} />}>Energy Node</SidebarLink>
+                            <SidebarLink to="/investments" icon={<CreditCard size={18} />}>Node</SidebarLink>
                             <SidebarLink to="/ask" icon={<PieChart size={18} />}>Ask</SidebarLink>
                             <SidebarLink to="/bid" icon={<PieChart size={18} />}>Bid</SidebarLink>
                             <SidebarLink to="/referral" icon={<Users size={18} />}>Referral</SidebarLink>
