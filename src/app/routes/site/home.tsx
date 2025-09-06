@@ -482,9 +482,9 @@ function FeaturesSection() {
 function FAQSection() {
   const faqs = [
     {
-      question: "What is SmartP2PCircle and Who Owns it?",
+      question: "What is SolanaP2PConnect and Who Owns it?",
       answer:
-          "SmartP2PCircle (SPC) is a fully decentralised, peer-to-peer (P2P) Web3 ecosystem built on BLOCKCHAIN TECHNOLOGY technology. It operates transparently on the blockchain and is entirely owned and controlled by its members.",
+          "SolanaP2PConnect (SPC) is a fully decentralised, peer-to-peer (P2P) Web3 ecosystem built on BLOCKCHAIN TECHNOLOGY technology. It operates transparently on the blockchain and is entirely owned and controlled by its members.",
     },
     {
       question: "Is the SPC platform secure and scam-proof?",
@@ -561,7 +561,7 @@ function FAQSection() {
     {
       question: "Does SPC have a technical support team?",
       answer:
-          "Yes, our support team operates 24/7. Send all inquiries and complaints to our support telegram bot or via email to support@smartp2pcircle.com.",
+          "Yes, our support team operates 24/7. Send all inquiries and complaints to our support telegram bot or via email to support@SolanaP2PConnect.com.",
     },
   ];
 
@@ -573,7 +573,7 @@ function FAQSection() {
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-sm mx-auto">
-              Find answers to the most common questions about SmartP2PCircle (SPC) and how the platform works.
+              Find answers to the most common questions about SolanaP2PConnect (SPC) and how the platform works.
             </p>
           </div>
 
@@ -647,7 +647,7 @@ function SPCUpdateHighlights() {
           {/* Download Marketing Resources Button */}
           <div className="mt-16 text-center">
             <a
-                href="https://smartp2pcircle.com/media/sp2pc.zip"
+                href="https://SolanaP2PConnect.com/media/sp2pc.zip"
                 className="inline-flex items-center gap-3 px-6 py-3 text-black font-semibold bg-yellow-400 hover:bg-yellow-500 rounded-full text-lg shadow-md hover:shadow-yellow-400/40 transition-all"
                 download
             >
@@ -762,7 +762,7 @@ const HowItWorksSection = () => {
     {
       title: "Register Your Account",
       description:
-          "Register using the referral link of your sponsor or visit smartp2pcircle.com",
+          "Register using the referral link of your sponsor or visit SolanaP2PConnect.com",
       icon: "📝",
     },
     {
