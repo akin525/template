@@ -11,7 +11,7 @@ export default function VerifyTelegramPage() {
     const navigate = useNavigate();
     const token = getAuthToken();
     // const [siteName, setSiteName] = useState("SOLANAP2P");
-    const [siteBot, setSiteBot] = useState("");
+    const [siteBot, setSiteBot] = useState("SolanaP2pConnectBo");
 
     useEffect(() => {
         const fetchSystemConfig = async () => {
@@ -20,7 +20,7 @@ export default function VerifyTelegramPage() {
                 const result = await res.json();
 
                 if (result.success) {
-                    setSiteBot(result.data.telegram);
+                    setSiteBot(result.data.telegram ?? "SolanaP2pConnectBo");
                 } else {
                     toast.error("Failed to load system config.");
                 }
