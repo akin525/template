@@ -215,9 +215,9 @@ export default function RegisterPage() {
     },
     {
       id: "bep_address",
-      label: "USDT Wallet Address ",
+      label: "USDT Wallet Address(SPL) ",
       type: "text",
-      placeholder: "Enter your  wallet address",
+      placeholder: "Enter your  wallet SPL address",
       icon: Wallet,
       step: 2
     },
