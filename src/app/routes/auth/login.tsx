@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import {
   ArrowLeft,
@@ -11,7 +11,6 @@ import {
   CheckCircle,
   Sparkles,
   Globe,
-  Users,
   TrendingUp
 } from "lucide-react";
 import { toast } from "react-toastify";
@@ -70,7 +69,7 @@ export default function LoginPage() {
     fetchSystemConfig();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!loginEnabled) return toast.error("Login is currently disabled by admin.");
     setLoading(true);
@@ -94,7 +93,7 @@ export default function LoginPage() {
       } else {
         toast.error(data.message || "Login failed");
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);

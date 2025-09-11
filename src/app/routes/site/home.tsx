@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router";
-import MobileMenu from "@/components/mobile-menu";
+// import MobileMenu from "@/components/mobile-menu";
 import { ReactLenis } from "lenis/react";
 import {useEffect} from "react";
 import Marquee from "react-fast-marquee";
@@ -8,12 +8,12 @@ import "aos/dist/aos.css";
 import pic from "@/assets/psp2.jpg"
 import pic1 from "@/assets/psp3.jpg"
 import logo from "@/assets/SOLANA-P2P-LOGO.png"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+// import {
+//   Accordion,
+//   AccordionContent,
+//   AccordionItem,
+//   AccordionTrigger,
+// } from "@/components/ui/accordion";
 
 import { Button } from "@/components/ui/button";
 // import { DotBackgroundDemo } from "@/components/ui/dot-background";
@@ -39,8 +39,8 @@ import {
   Search,
   HelpCircle, Download, Gift, DollarSign, Bot, Sparkles,
 } from "lucide-react";
-import {FaArrowCircleUp, FaDownload, FaRobot} from "react-icons/fa";
-import {MdAccessTime, MdAttachMoney} from "react-icons/md";
+// import {FaArrowCircleUp, FaDownload, FaRobot} from "react-icons/fa";
+// import {MdAccessTime, MdAttachMoney} from "react-icons/md";
 import axios from "axios";
 
 export function Header() {
@@ -506,18 +506,21 @@ const HeroSection = () => {
         </div>
 
         {/* Custom CSS for animations */}
-        <style jsx>{`
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
-      </>
+          <style>
+            {`
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient {
+      background-size: 200% 200%;
+      animation: gradient 3s ease infinite;
+    }
+  `}
+          </style>
+
+        </>
   );
 };
 
@@ -841,7 +844,7 @@ const P2PSection = () => {
 
 
 function ServicesSection() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const services = [
     {
@@ -888,8 +891,20 @@ function ServicesSection() {
     },
   ];
 
-  const getColorClasses = (color) => {
-    const colorMap = {
+  // Define proper types for better type safety
+  type ColorType = 'orange' | 'blue' | 'green' | 'purple' | 'pink' | 'indigo';
+
+  interface ColorClasses {
+    icon: string;
+    bg: string;
+    border: string;
+    hoverBg: string;
+    dot: string;
+    button: string;
+  }
+
+  const getColorClasses = (color: ColorType): ColorClasses => {
+    const colorMap: Record<ColorType, ColorClasses> = {
       orange: {
         icon: 'text-orange-600',
         bg: 'bg-orange-50',
@@ -939,7 +954,8 @@ function ServicesSection() {
         button: 'bg-indigo-600 hover:bg-indigo-700'
       }
     };
-    return colorMap[color];
+
+    return colorMap[color] || colorMap.blue;
   };
 
   return (
@@ -973,11 +989,11 @@ function ServicesSection() {
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
-              const colors = getColorClasses(service.color);
+              const colors = getColorClasses(service.color as ColorType);
               return (
                   <div
                       key={index}
-                      className={`group relative bg-white border-2 ${colors.border} rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${colors.hoverBg}`}
+                      className={`base-classes ${hoveredIndex === index ? 'hover-effect' : ''}`}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
                   >
@@ -1039,7 +1055,7 @@ function ServicesSection() {
   );
 }
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 
 function FeaturesSection() {
@@ -1118,6 +1134,7 @@ function FAQSection() {
   const [searchTerm, setSearchTerm] = useState('');
   const [openItems, setOpenItems] = useState(new Set());
   const [selectedCategory, setSelectedCategory] = useState('all');
+  // Removed: const [hoveredCard, setHoveredCard] = useState(null);
 
   const faqs = [
     {
@@ -1244,7 +1261,7 @@ function FAQSection() {
 
   const popularFaqs = faqs.filter(faq => faq.popular);
 
-  const toggleItem = (index) => {
+  const toggleItem = (index: number) => {
     const newOpenItems = new Set(openItems);
     if (newOpenItems.has(index)) {
       newOpenItems.delete(index);
@@ -1374,7 +1391,7 @@ function FAQSection() {
                 </div>
             ) : (
                 <div className="space-y-4">
-                  {filteredFaqs.map((faq, index) => {
+                  {filteredFaqs.map((faq) => {
                     const originalIndex = faqs.findIndex(f => f.question === faq.question);
                     const isOpen = openItems.has(originalIndex);
 
@@ -1475,8 +1492,10 @@ function FAQSection() {
 }
 
 
+
 function SPCUpdateHighlights() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  // Fix: Include both the state value and setter function with proper typing
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const updates = [
     {
@@ -1521,8 +1540,18 @@ function SPCUpdateHighlights() {
     },
   ];
 
-  const getColorClasses = (color) => {
-    const colorMap = {
+  type ColorType = 'blue' | 'green' | 'purple' | 'pink';
+
+  interface ColorClasses {
+    bg: string;
+    border: string;
+    icon: string;
+    badge: string;
+    glow: string;
+  }
+
+  const getColorClasses = (color: string): ColorClasses => {
+    const colorMap: Record<ColorType, ColorClasses> = {
       blue: {
         bg: 'from-blue-500/20 to-blue-600/20',
         border: 'border-blue-400/30',
@@ -1552,7 +1581,9 @@ function SPCUpdateHighlights() {
         glow: 'shadow-pink-500/20'
       }
     };
-    return colorMap[color];
+
+    // Return the color if it exists, otherwise default to blue
+    return colorMap[color as ColorType] || colorMap.blue;
   };
 
   const stats = [
@@ -1575,7 +1606,7 @@ function SPCUpdateHighlights() {
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                         linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
             backgroundSize: '50px 50px'
           }}></div>
         </div>
@@ -1627,7 +1658,9 @@ function SPCUpdateHighlights() {
               return (
                   <div
                       key={index}
-                      className={`group relative p-8 bg-gradient-to-br ${colors.bg} backdrop-blur-sm border ${colors.border} rounded-3xl transition-all duration-500 hover:scale-105 hover:shadow-2xl ${colors.glow} cursor-pointer`}
+                      className={`group relative p-8 bg-gradient-to-br ${colors.bg} backdrop-blur-sm border ${colors.border} rounded-3xl transition-all duration-500 hover:scale-105 hover:shadow-2xl ${colors.glow} cursor-pointer ${
+                          isHovered ? 'scale-105 shadow-2xl' : ''
+                      }`}
                       onMouseEnter={() => setHoveredCard(index)}
                       onMouseLeave={() => setHoveredCard(null)}
                   >
@@ -1637,7 +1670,9 @@ function SPCUpdateHighlights() {
                     </div>
 
                     {/* Icon */}
-                    <div className={`w-16 h-16 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-16 h-16 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ${
+                        isHovered ? 'scale-110' : ''
+                    }`}>
                       <IconComponent className={`w-8 h-8 ${colors.icon}`} />
                     </div>
 

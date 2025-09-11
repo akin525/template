@@ -14,14 +14,11 @@ import {
   Shield,
   CheckCircle,
   Sparkles,
-  Globe,
-  Users,
   TrendingUp,
   Gift,
   Zap
 } from "lucide-react";
 import { toast } from "react-toastify";
-// import pic1 from "@/assets/solanasvg.webp";
 import pic1 from "@/assets/SOLANA-P2P-LOGO.png";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;

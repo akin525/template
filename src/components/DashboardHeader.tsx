@@ -11,19 +11,19 @@ import {
   User,
   LogOut,
   HelpCircle,
-  Shield,
-  Zap,
+  // Shield,
+  // Zap,
   TrendingUp,
   Wallet,
   Filter,
   Command,
-  Globe,
+  // Globe,
   Star,
-  Award,
+  // Award,
   Gift
 } from "lucide-react";
 import { useUser } from "@/context/UserContext.tsx";
-import pic1 from "@/assets/solanasvg.webp";
+// import pic1 from "@/assets/solanasvg.webp";
 
 export default function DashboardHeader({
                                           setSidebarOpen,

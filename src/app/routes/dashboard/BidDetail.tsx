@@ -18,7 +18,6 @@ import {
     DollarSign,
     Hash,
     Send,
-    Eye,
     RefreshCw,
     TrendingUp,
     Users,
@@ -28,6 +27,27 @@ import {
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 const token = getAuthToken();
+
+// Define types for better type safety
+interface StatusConfig {
+    color: string;
+    bg: string;
+    icon: any;
+    border: string;
+}
+//
+// type StatusType =
+//     | 'awaiting_payment'
+//     | 'success'
+//     | 'paired'
+//     | 'completed'
+//     | 'approved'
+//     | 'payment_confirmed'
+//     | 'payment_submitted'
+//     | 'confirmed'
+//     | 'pending'
+//     | 'failed'
+//     | 'undecided';
 
 export default function BidDetail() {
     const { id } = useParams();
@@ -91,23 +111,6 @@ export default function BidDetail() {
         } finally {
             setIsSubmitting(false);
         }
-    };
-
-    const getStatusConfig = (status: string, isPayment = false) => {
-        const configs = {
-            awaiting_payment: { color: "text-yellow-600", bg: "bg-yellow-50", icon: Clock, border: "border-yellow-200" },
-            success: { color: "text-green-600", bg: "bg-green-50", icon: CheckCircle, border: "border-green-200" },
-            paired: { color: "text-blue-600", bg: "bg-blue-50", icon: Users, border: "border-blue-200" },
-            completed: { color: "text-emerald-600", bg: "bg-emerald-50", icon: CheckCircle, border: "border-emerald-200" },
-            approved: { color: "text-green-600", bg: "bg-green-50", icon: CheckCircle, border: "border-green-200" },
-            payment_confirmed: { color: "text-blue-600", bg: "bg-blue-50", icon: CheckCircle, border: "border-blue-200" },
-            payment_submitted: { color: "text-purple-600", bg: "bg-purple-50", icon: Send, border: "border-purple-200" },
-            confirmed: { color: "text-green-600", bg: "bg-green-50", icon: CheckCircle, border: "border-green-200" },
-            pending: { color: "text-yellow-600", bg: "bg-yellow-50", icon: Clock, border: "border-yellow-200" },
-            failed: { color: "text-red-600", bg: "bg-red-50", icon: XCircle, border: "border-red-200" },
-            undecided: { color: "text-gray-600", bg: "bg-gray-50", icon: AlertCircle, border: "border-gray-200" },
-        };
-        return configs[status?.toLowerCase()] || configs.pending;
     };
 
     if (loading) {
@@ -420,7 +423,7 @@ function PeerCard({ peer, onSubmitHash }: { peer: any; onSubmitHash: () => void 
 
             <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-3">
-                    <StatusBadge status={peer.payment_status} isPayment />
+                    <StatusBadge status={peer.payment_status} />
                     {peer.status !== "undecided" && <StatusBadge status={peer.status} />}
                 </div>
 
@@ -439,8 +442,8 @@ function PeerCard({ peer, onSubmitHash }: { peer: any; onSubmitHash: () => void 
 }
 
 // Status Badge Component
-function StatusBadge({ status, isPayment = false }: { status: string; isPayment?: boolean }) {
-    const config = getStatusConfig(status, isPayment);
+function StatusBadge({ status }: { status: string }) {
+    const config = getStatusConfig(status);
     const StatusIcon = config.icon;
     const label = formatLabel(status);
 
@@ -452,8 +455,9 @@ function StatusBadge({ status, isPayment = false }: { status: string; isPayment?
     );
 }
 
-function getStatusConfig(status: string, isPayment = false) {
-    const configs = {
+// Fixed getStatusConfig function with proper typing
+function getStatusConfig(status: string): StatusConfig {
+    const configs: Record<string, StatusConfig> = {
         awaiting_payment: { color: "text-yellow-600", bg: "bg-yellow-50", icon: Clock, border: "border-yellow-200" },
         success: { color: "text-green-600", bg: "bg-green-50", icon: CheckCircle, border: "border-green-200" },
         paired: { color: "text-blue-600", bg: "bg-blue-50", icon: Users, border: "border-blue-200" },
@@ -466,7 +470,9 @@ function getStatusConfig(status: string, isPayment = false) {
         failed: { color: "text-red-600", bg: "bg-red-50", icon: XCircle, border: "border-red-200" },
         undecided: { color: "text-gray-600", bg: "bg-gray-50", icon: AlertCircle, border: "border-gray-200" },
     };
-    return configs[status?.toLowerCase()] || configs.pending;
+
+    const normalizedStatus = status?.toLowerCase() || 'pending';
+    return configs[normalizedStatus] || configs.pending;
 }
 
 function formatLabel(label: string): string {

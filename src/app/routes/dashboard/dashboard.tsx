@@ -33,11 +33,11 @@ export default function Dashboard() {
         toast.success(`${label} copied!`);
     };
 
-    const recentTransactions = [
-        { id: 1, type: 'Received', amount: 500, status: 'completed', time: '2 min ago' },
-        { id: 2, type: 'Sent', amount: 250, status: 'pending', time: '1 hour ago' },
-        { id: 3, type: 'Trade', amount: 1000, status: 'completed', time: '3 hours ago' },
-    ];
+    // const recentTransactions = [
+    //     { id: 1, type: 'Received', amount: 500, status: 'completed', time: '2 min ago' },
+    //     { id: 2, type: 'Sent', amount: 250, status: 'pending', time: '1 hour ago' },
+    //     { id: 3, type: 'Trade', amount: 1000, status: 'completed', time: '3 hours ago' },
+    // ];
 
     return (
         <div className="min-h-screen bg-gray-50 flex">
@@ -200,7 +200,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <div className="space-y-4">
-                                    {user?.recentBids.map((transaction) => (
+                                    {user?.recentBids.map((transaction: any) => (
                                         <div key={transaction.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
                                             <div className="flex items-center gap-4">
                                                 <div className={`p-2 rounded-lg ${
