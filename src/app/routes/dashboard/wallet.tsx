@@ -122,13 +122,13 @@ const WalletPage = () => {
                                     to="/ask"
                                     className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl font-medium transition-colors shadow-sm"
                                 >
-                                    Sell USDT
+                                    Ask
                                 </Link>
                                 <Link
                                     to="/bid"
                                     className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-colors shadow-sm"
                                 >
-                                    Buy USDT
+                                    Bid
                                 </Link>
                             </div>
                         </div>
