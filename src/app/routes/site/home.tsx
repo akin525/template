@@ -1151,13 +1151,13 @@ function FAQSection() {
     },
     {
       question: "What is the minimum and maximum bid allowed?",
-      answer: "Minimum bid: $10 USDT. Maximum bid: $300 USDT.",
+      answer: "Minimum bid: $20 USDT. Maximum bid: $3000 USDT.",
       category: "trading",
       popular: true
     },
     {
       question: "What are the bidding and rebidding times?",
-      answer: "Bidding, rebidding, and asking are open twice daily: 10:00 – 10:30 AM CET and 10:00 – 10:30 PM CET.",
+      answer: "Bidding, rebidding, and asking are open 24/7.",
       category: "trading",
       popular: false
     },
@@ -1193,7 +1193,7 @@ function FAQSection() {
     },
     {
       question: "How long does it take for my bid to mature and yield returns?",
-      answer: "Each bid matures in 10 days for full returns.",
+      answer: "Each bid matures in 30 days for full returns.",
       category: "trading",
       popular: true
     },
@@ -1205,31 +1205,34 @@ function FAQSection() {
     },
     {
       question: "What if I rebid before the maturity date?",
-      answer: "Rebidding early resets your cycle. It becomes a new bid, and the 10-day maturity period starts afresh.",
+      answer: "Rebidding early resets your cycle. It becomes a new bid, and the 30-day maturity period starts afresh.",
       category: "trading",
       popular: false
     },
     {
       question: "Do I have to refer others to earn, and what is the referral bonus?",
-      answer: "Referring others is optional. However, you earn a 10% referral bonus from the bids made by your direct referrals.",
+      answer: "Referring others is optional, however you earn in 3 levels\n.",
       category: "referrals",
       popular: true
     },
     {
       question: "Can I start with a small bid and increase later?",
-      answer: "Yes. You can begin with any amount within the allowed range (minimum of $10) and increase in subsequent cycles.",
+      answer: "Yes. You can begin with any amount within the allowed range (minimum of $20) and increase in subsequent cycles.",
       category: "trading",
       popular: false
     },
     {
       question: "What is the minimum withdrawal amount?",
-      answer: "The minimum amount you can withdraw is $20.",
+      answer: "The minimum amount you can withdraw is $10.",
       category: "withdrawals",
       popular: false
     },
     {
       question: "Are there generational or multi-level bonuses?",
-      answer: "No. SC offers only a direct referral bonus of 10%. There are no multi-level or generational bonuses.",
+      answer: "Yes, Solanap2pconnect is an affiliate program that offers referral bonus from level 1 to level 3\n" +
+          "1st Level 5%\n" +
+          "2nd Level 3%\n" +
+          "3rd Level 1%.",
       category: "referrals",
       popular: false
     },
