@@ -329,11 +329,11 @@ const HeroSection = () => {
       title: "Fraud Protection",
       description: "Defaulters who submit fake receipts are blocked instantly"
     },
-    {
-      icon: "✨",
-      title: "Clean Exchange",
-      description: "No drama. Just clean P2P value exchange"
-    },
+    // {
+    //   icon: "✨",
+    //   title: "Clean Exchange",
+    //   description: "No drama. Just clean P2P value exchange"
+    // },
     {
       icon: "💰",
       title: "Flexible Bidding",
@@ -1774,7 +1774,7 @@ function SPCUpdateHighlights() {
 const footerData = {
   companyInfo: {
     description:
-      "SOLANAP2P Trading is a peer-to-peer digital asset trading and exchange platform that connects buyers and sellers worldwide.",
+      "Solanap2pconnect is an affiliate program that offers referral bonus from level 1 to level 3.",
   },
   quickLinks: [
     { label: "Home", href: "#" },
