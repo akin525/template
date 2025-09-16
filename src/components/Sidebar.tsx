@@ -382,14 +382,14 @@ export default function Sidebar({
 
                     {/* Footer Actions */}
                     <div className="border-t border-gray-100 p-4 space-y-2 bg-white">
-                        <SidebarLink
-                            to="/help"
-                            icon={<HelpCircle className="w-4 h-4" />}
-                            isActive={false}
-                            color="indigo"
-                        >
-                            Help & Support
-                        </SidebarLink>
+                        {/*<SidebarLink*/}
+                        {/*    to="/help"*/}
+                        {/*    icon={<HelpCircle className="w-4 h-4" />}*/}
+                        {/*    isActive={false}*/}
+                        {/*    color="indigo"*/}
+                        {/*>*/}
+                        {/*    Help & Support*/}
+                        {/*</SidebarLink>*/}
 
                         <button
                             onClick={() => {
