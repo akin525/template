@@ -101,7 +101,7 @@ export default function Sidebar({
             color: 'gray',
             items: [
                 { to: '/profile', icon: User, label: 'Profile Settings', badge: null, color: 'slate' },
-                { to: '/settings', icon: Settings, label: 'Preferences', badge: null, color: 'gray' },
+                // { to: '/settings', icon: Settings, label: 'Preferences', badge: null, color: 'gray' },
             ]
         }
     ];

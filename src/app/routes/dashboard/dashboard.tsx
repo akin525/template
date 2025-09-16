@@ -152,8 +152,8 @@ export default function Dashboard() {
                       Popular
                     </span>
                                     </div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Sell USDT</h3>
-                                    <p className="text-sm text-gray-600">Create sell orders and earn profits</p>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Ask USDT SPL</h3>
+                                    <p className="text-sm text-gray-600">Create ask orders and earn profits</p>
                                 </Link>
 
                                 <Link
@@ -165,8 +165,8 @@ export default function Dashboard() {
                                             <Plus className="w-6 h-6 text-blue-600" />
                                         </div>
                                     </div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Buy USDT</h3>
-                                    <p className="text-sm text-gray-600">Place buy orders at your rate</p>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Bid USDT SPL</h3>
+                                    <p className="text-sm text-gray-600">Place bid orders at your rate</p>
                                 </Link>
 
                                 <Link

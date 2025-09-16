@@ -80,11 +80,11 @@ export function Header() {
               <Link to="/" className="flex items-center group">
                 <div className="relative">
                   {/* Logo Container */}
-                  <div className="w-12 h-12 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                  <div className="w-20 h-20 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                     <img
                         src={logo}
                         alt="SOLANAP2P Logo"
-                        className="w-10 h-10 object-contain"
+                        // className="w-10 h-10 object-contain"
                     />
                   </div>
                   {/* Status Indicator */}
