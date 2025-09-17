@@ -173,7 +173,7 @@ export default function BidDetail() {
                                 <ArrowLeft className="w-5 h-5 text-gray-600" />
                             </button>
                             <div>
-                                <h1 className="text-3xl font-bold text-gray-900">Buy Order Details</h1>
+                                <h1 className="text-3xl font-bold text-gray-900">Bid Order Details</h1>
                                 <p className="text-gray-600 mt-1">Order ID: {bid.trx}</p>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ export default function BidDetail() {
                                 </div>
                                 <div>
                                     <h2 className="text-2xl font-bold text-gray-900">{bid.amount} USDT</h2>
-                                    <p className="text-gray-500">Buy Order Amount</p>
+                                    <p className="text-gray-500">Bid Order Amount</p>
                                 </div>
                                 <div className="ml-auto">
                                     <StatusBadge status={bid.status} />

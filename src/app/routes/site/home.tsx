@@ -871,8 +871,8 @@ function ServicesSection() {
     {
       icon: <Shield className="w-8 h-8" />,
       title: "Escrow Protection",
-      description: "Trade with confidence using our escrow service that protects both buyers and sellers throughout the transaction process.",
-      features: ["Buyer Protection", "Seller Security", "Dispute Resolution"],
+      description: "Trade with confidence using our escrow service that protects both Biders and sellers throughout the transaction process.",
+      features: ["Bider Protection", "Seller Security", "Dispute Resolution"],
       color: "purple"
     },
     {
