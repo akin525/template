@@ -4,8 +4,7 @@ import { getAuthToken } from "@/utils/auth";
 import DashboardHeader from "@/components/DashboardHeader";
 import Sidebar from "@/components/Sidebar";
 import { toast } from "react-toastify";
-import {useTheme} from "next-themes";
-// import { useTheme } from "@/contexts/ThemeContext"; // Assuming you have a theme context
+import { useTheme } from "@/context/ThemeContext"; // Assuming you have a theme context
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 const token = getAuthToken();
