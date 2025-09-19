@@ -4,18 +4,17 @@ import { getAuthToken } from "@/utils/auth";
 import DashboardHeader from "@/components/DashboardHeader";
 import Sidebar from "@/components/Sidebar";
 import { toast } from "react-toastify";
-import { useTheme } from "@/context/ThemeContext"; // Assuming you have a theme context
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 const token = getAuthToken();
 
 export default function AskDetail() {
     const { id } = useParams();
-    const { isDarkMode } = useTheme(); // Get theme state
     const [ask, setAsk] = useState<any>(null);
     const [peers, setPeers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false); // or detect from document.documentElement.classList.contains('dark')
 
     // Modal states
     const [modalOpen, setModalOpen] = useState(false);
@@ -26,6 +25,25 @@ export default function AskDetail() {
     const [actionType, setActionType] = useState<"confirm" | "reject" | null>(null);
     const [rejectReason, setRejectReason] = useState("");
     const [processing, setProcessing] = useState(false);
+    useEffect(() => {
+        const checkDarkMode = () => {
+            const isDark = document.documentElement.classList.contains('light') ||
+                localStorage.getItem('theme') === 'light' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: light)').matches);
+            setIsDarkMode(isDark);
+        };
+
+        checkDarkMode();
+
+        // Listen for theme changes
+        const observer = new MutationObserver(checkDarkMode);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+        return () => observer.disconnect();
+    }, []);
+
+
+
 
     useEffect(() => {
         async function fetchAsk() {

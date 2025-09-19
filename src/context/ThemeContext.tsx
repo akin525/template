@@ -1,4 +1,4 @@
-// contexts/ThemeContext.tsx
+// src/context/ThemeContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface ThemeContextType {
@@ -10,8 +10,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isDarkMode, setIsDarkMode] = useState(() => {
+        // Check localStorage or system preference
         const saved = localStorage.getItem('theme');
-        return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved) {
+            return saved === 'dark';
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
     });
 
     useEffect(() => {
@@ -24,7 +28,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, [isDarkMode]);
 
     const toggleTheme = () => {
-        setIsDarkMode(!isDarkMode);
+        setIsDarkMode(prev => !prev);
     };
 
     return (
