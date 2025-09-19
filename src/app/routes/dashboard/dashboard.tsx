@@ -194,7 +194,7 @@ export default function Dashboard() {
                             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                                 <div className="flex items-center justify-between mb-6">
                                     <h3 className="text-xl font-bold text-gray-900">Recent Activity</h3>
-                                    <Link to="/dashboard/transactions" className="text-sm font-medium text-blue-600 hover:text-blue-700">
+                                    <Link to="/history" className="text-sm font-medium text-blue-600 hover:text-blue-700">
                                         View All
                                     </Link>
                                 </div>
