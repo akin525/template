@@ -125,7 +125,7 @@ export default function AskPage() {
                           setBepAddress(user.bep_address);
                           toast.success("Address auto-filled.");
                         } else {
-                          toast.warn("No saved BEP address found.");
+                          toast.warn("No saved SPL address found.");
                         }
                       }}
                       className="bg-blue-600 text-white hover:bg-blue-700"

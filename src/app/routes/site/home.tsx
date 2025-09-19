@@ -65,66 +65,100 @@ export function Header() {
   return (
       <>
         <header
-            className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+            className={`fixed top-0 z-50 w-full transition-all duration-500 ${
                 isScrolled
-                    ? 'backdrop-blur-xl bg-white/95 shadow-lg border-b border-gray-200/50'
-                    : 'backdrop-blur-md bg-white/80 border-b border-gray-100/50'
+                    ? 'backdrop-blur-xl bg-white/95 shadow-xl border-b border-gray-200/50'
+                    : 'backdrop-blur-md bg-white/90 border-b border-gray-100/30'
             }`}
         >
-          <div className="container mx-auto px-4">
-            <div className={`flex items-center justify-between transition-all duration-300 ${
-                isScrolled ? 'h-16' : 'h-20'
+          <div className="container mx-auto px-4 lg:px-6">
+            <div className={`flex items-center justify-between transition-all duration-500 ${
+                isScrolled ? 'h-18' : 'h-24'
             }`}>
 
-              {/* Logo / Brand - Logo Only Version */}
-              <Link to="/" className="flex items-center group">
+              {/* Bold Logo Section */}
+              <Link to="/" className="flex items-center group relative z-10">
                 <div className="relative">
-                  {/* Logo Container */}
-                  <div className="w-20 h-20 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                  {/* Main Logo Container with Enhanced Styling */}
+                  <div className={`relative bg-gradient-to-br from-white via-gray-50 to-white rounded-2xl shadow-2xl border-2 border-gray-200/60 flex items-center justify-center group-hover:scale-110 group-hover:rotate-1 transition-all duration-500 overflow-hidden ${
+                      isScrolled ? 'w-16 h-16' : 'w-20 h-20'
+                  }`}>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    {/* Logo Image */}
                     <img
                         src={logo}
                         alt="SOLANAP2P Logo"
-                        // className="w-10 h-10 object-contain"
+                        className={`relative z-10 object-contain transition-all duration-500 ${
+                            isScrolled ? 'w-8 h-8' : 'w-12 h-12'
+                        }`}
                     />
+
+                    {/* Inner Glow Effect */}
+                    <div className="absolute inset-2 rounded-xl bg-gradient-to-br from-primary/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  {/* Status Indicator */}
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse border-2 border-white"></div>
+
+                  {/* Animated Status Indicator */}
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse border-3 border-white shadow-lg">
+                    <div className="absolute inset-0.5 bg-green-300 rounded-full animate-ping"></div>
+                  </div>
+
+                  {/* Floating Particles Effect */}
+                  <div className="absolute -inset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute top-0 left-0 w-1 h-1 bg-primary/40 rounded-full animate-bounce" style={{animationDelay: '0s'}}></div>
+                    <div className="absolute top-2 right-0 w-1 h-1 bg-blue-500/40 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div className="absolute bottom-0 left-2 w-1 h-1 bg-purple-500/40 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+                  </div>
+                </div>
+
+                {/* Brand Text (Optional - shows on larger screens) */}
+                <div className="hidden xl:block ml-4 group-hover:ml-5 transition-all duration-500">
+                  <div className="text-xl font-black text-gray-800 tracking-tight">
+                    SOLANA<span className="text-primary">P2P</span>CONNECT
+                  </div>
+                  <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase">
+                    Decentralized Trading
+                  </div>
                 </div>
               </Link>
 
-
               {/* Desktop Navigation */}
-              <nav className="hidden lg:flex items-center space-x-1">
+              <nav className="hidden lg:flex items-center space-x-2">
                 {navItems.map((item) => (
                     <Link
                         key={item.name}
                         to={item.href}
-                        className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                        className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 group ${
                             item.current
-                                ? 'bg-primary/10 text-primary'
-                                : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                                ? 'bg-gradient-to-r from-primary/15 to-blue-500/15 text-primary shadow-lg'
+                                : 'text-gray-600 hover:text-primary hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary/5'
                         }`}
                     >
                       {item.name}
+                      {item.current && (
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></div>
+                      )}
                     </Link>
                 ))}
               </nav>
 
               {/* Desktop Auth Buttons */}
-              <div className="hidden md:flex items-center space-x-3">
+              <div className="hidden md:flex items-center space-x-4">
                 <Link to="/login">
                   <Button
                       variant="ghost"
-                      className="px-6 py-2 text-gray-700 hover:text-primary hover:bg-primary/5 font-semibold rounded-xl transition-all duration-300"
+                      className="px-6 py-2.5 text-gray-700 hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-blue-500/5 font-bold rounded-xl transition-all duration-300 border border-transparent hover:border-primary/20"
                   >
                     Sign In
                   </Button>
                 </Link>
                 <Link to="/register">
                   <Button
-                      className="px-6 py-2 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-primary/25 transform hover:scale-105 transition-all duration-300"
+                      className="relative px-6 py-2.5 bg-gradient-to-r from-primary via-primary to-blue-600 hover:from-primary/90 hover:via-primary/90 hover:to-blue-600/90 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/30 transform hover:scale-105 transition-all duration-300 overflow-hidden"
                   >
-                    Get Started
+                    <span className="relative z-10">Get Started</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </Button>
                 </Link>
               </div>
@@ -132,7 +166,7 @@ export function Header() {
               {/* Mobile Menu Button */}
               <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="md:hidden p-2 rounded-xl text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors duration-300"
+                  className="md:hidden p-3 rounded-xl text-gray-600 hover:text-primary hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary/5 transition-all duration-300 border border-transparent hover:border-primary/20"
               >
                 {isMobileMenuOpen ? (
                     <X className="w-6 h-6" />
@@ -144,20 +178,20 @@ export function Header() {
           </div>
 
           {/* Mobile Menu */}
-          <div className={`md:hidden transition-all duration-300 overflow-hidden ${
+          <div className={`md:hidden transition-all duration-500 overflow-hidden ${
               isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}>
-            <div className="bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-lg">
-              <div className="container mx-auto px-4 py-4 space-y-2">
+            <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100 shadow-2xl">
+              <div className="container mx-auto px-4 py-6 space-y-3">
                 {navItems.map((item) => (
                     <Link
                         key={item.name}
                         to={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                        className={`block px-5 py-4 rounded-xl text-base font-semibold transition-all duration-300 ${
                             item.current
-                                ? 'bg-primary/10 text-primary'
-                                : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                                ? 'bg-gradient-to-r from-primary/15 to-blue-500/15 text-primary shadow-lg'
+                                : 'text-gray-600 hover:text-primary hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary/5'
                         }`}
                     >
                       {item.name}
@@ -165,18 +199,18 @@ export function Header() {
                 ))}
 
                 {/* Mobile Auth Buttons */}
-                <div className="pt-4 space-y-3 border-t border-gray-100">
+                <div className="pt-6 space-y-4 border-t border-gray-100">
                   <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button
                         variant="outline"
-                        className="w-full py-3 text-gray-700 border-gray-200 hover:border-primary hover:text-primary font-semibold rounded-xl"
+                        className="w-full py-4 text-gray-700 border-2 border-gray-200 hover:border-primary hover:text-primary font-bold rounded-xl transition-all duration-300"
                     >
                       Sign In
                     </Button>
                   </Link>
                   <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button
-                        className="w-full py-3 bg-gradient-to-r from-primary to-blue-600 text-white font-semibold rounded-xl shadow-lg"
+                        className="w-full py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
                     >
                       Get Started
                     </Button>
@@ -188,7 +222,7 @@ export function Header() {
         </header>
 
         {/* Spacer for fixed header */}
-        <div className={`transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`} />
+        <div className={`transition-all duration-500 ${isScrolled ? 'h-18' : 'h-24'}`} />
       </>
   );
 }
@@ -494,11 +528,11 @@ const HeroSection = () => {
             {Array.from({ length: 6 }).map((_, i) => (
                 <span key={i} className="mx-8 flex items-center gap-3">
               <span className="text-2xl animate-pulse">🔥</span>
-              <span>No Recommitment</span>
+              <span>We have Recommitting</span>
               <span className="text-yellow-300">•</span>
               <span>100% Transparency</span>
               <span className="text-yellow-300">•</span>
-              <span className="text-yellow-300 font-black">200% Return in 10 Days</span>
+              <span className="text-yellow-300 font-black">100% Return in 30 Days</span>
               <span className="text-2xl animate-pulse">🔥</span>
             </span>
             ))}
@@ -540,7 +574,7 @@ const WhatIsSection = () => {
     },
     {
       icon: <TrendingUp className="w-5 h-5" />,
-      text: "200% Return in 10 Days"
+      text: "100% Return in 30 Days"
     }
   ];
 
