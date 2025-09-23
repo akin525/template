@@ -90,7 +90,7 @@ export default function Sidebar({
             icon: Users,
             color: 'pink',
             items: [
-                { to: '/referral', icon: Gift, label: 'Referral Program', badge: '10%', color: 'yellow' },
+                { to: '/referral', icon: Gift, label: 'Referral Program', badge: null, color: 'yellow' },
                 { to: '/support', icon: MessageSquare, label: 'Support Center', badge: null, color: 'indigo' },
             ]
         },
