@@ -110,14 +110,14 @@ export default function AskPage() {
 
               {/* SPL Address Input */}
               <div className="mb-6">
-                <label className="block mb-2 text-sm font-medium text-gray-700">SPL-20 Wallet Address</label>
+                <label className="block mb-2 text-sm font-medium text-gray-700">USDT SPL Wallet Address</label>
                 <div className="flex items-center gap-2">
                   <input
                       type="text"
                       value={bepAddress}
                       onChange={(e) => setBepAddress(e.target.value)}
                       className="flex-1 p-3 rounded-lg bg-gray-50 border border-gray-300 text-gray-800"
-                      placeholder="Enter SPL address"
+                      placeholder="Enter USDT SPL address"
                   />
                   <Button
                       onClick={() => {

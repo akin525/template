@@ -528,7 +528,7 @@ const HeroSection = () => {
             {Array.from({ length: 6 }).map((_, i) => (
                 <span key={i} className="mx-8 flex items-center gap-3">
               <span className="text-2xl animate-pulse">🔥</span>
-              <span>We have Recommitting</span>
+              <span>Recommitment in 30 days</span>
               <span className="text-yellow-300">•</span>
               <span>100% Transparency</span>
               <span className="text-yellow-300">•</span>
